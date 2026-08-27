@@ -1,0 +1,64 @@
+import uuid
+from datetime import datetime
+
+from pydantic import BaseModel, Field
+
+
+class AssignedCaseOut(BaseModel):
+    title: str
+    case_number: int
+
+
+class AssignedSubmissionOut(BaseModel):
+    id: uuid.UUID
+    file_name: str
+    submitted_at: datetime
+
+
+class MyScoreSummary(BaseModel):
+    total: int
+    finalized: bool
+
+
+class AssignedTeamOut(BaseModel):
+    team_id: uuid.UUID
+    team_code: str
+    case: AssignedCaseOut | None
+    submission: AssignedSubmissionOut
+    my_score: MyScoreSummary | None
+
+
+class ScoreOut(BaseModel):
+    problem_understanding: int
+    technical_solution: int
+    creativity: int
+    presentation: int
+    feasibility: int
+    total: int
+    comments: str | None
+    finalized: bool
+    finalized_at: datetime | None
+
+
+class TeamJudgingDetailOut(BaseModel):
+    team_id: uuid.UUID
+    team_code: str
+    case: AssignedCaseOut | None
+    submission: AssignedSubmissionOut
+    # nice-to-have, only populated once round 2 is fully solved (mirrors
+    # admin.py's get_team_detail round2_investigation_summary logic) — None
+    # otherwise, never an awkward partial summary.
+    round2_investigation_summary: dict[str, str] | None
+    my_score: ScoreOut | None
+
+
+class ScoreIn(BaseModel):
+    # total is never accepted from the client — always computed server-side
+    # as the sum of the five sub-scores below.
+    problem_understanding: int = Field(ge=0, le=10)
+    technical_solution: int = Field(ge=0, le=20)
+    creativity: int = Field(ge=0, le=10)
+    presentation: int = Field(ge=0, le=10)
+    feasibility: int = Field(ge=0, le=10)
+    comments: str | None = None
+    finalize: bool = False
