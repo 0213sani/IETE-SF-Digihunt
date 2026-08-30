@@ -86,7 +86,7 @@
   --chart-3: oklch(0.65 0.2 128);
   --chart-4: oklch(0.55 0.014 115);
   --chart-5: oklch(0.4 0.01 120);
-  --radius: 0.125rem;
+  --radius: 0rem;
   --sidebar: oklch(0.17 0.006 130);
   --sidebar-foreground: oklch(0.96 0.006 110);
   --sidebar-primary: oklch(0.92 0.29 128);
@@ -120,16 +120,15 @@
 }
 
 @layer utilities {
-  .glow-cyan {
-    text-shadow: 0 0 12px oklch(0.92 0.29 128 / 60%);
+  .glow-lime {
+    text-shadow: 0 0 6px oklch(0.92 0.29 128 / 40%);
   }
 
   .glow-border {
-    box-shadow: 0 0 0 1px oklch(0.92 0.29 128 / 25%), 0 0 24px oklch(0.92 0.29 128 / 8%);
+    box-shadow: 0 0 0 1px oklch(0.92 0.29 128 / 18%), 0 0 8px oklch(0.92 0.29 128 / 5%);
   }
 
   .font-mono-data {
     font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   }
 }
-  
