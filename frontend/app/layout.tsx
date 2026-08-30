@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const khInterference = localFont({
-  variable: "--font-geist-sans",
+  variable: "--font-kh-interference",
   src: [
     { path: "./fonts/KHInterferenceTRIAL-Light.otf", weight: "300", style: "normal" },
     { path: "./fonts/KHInterferenceTRIAL-Regular.otf", weight: "500", style: "normal" },
@@ -14,7 +14,7 @@ const khInterference = localFont({
 });
 
 const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
